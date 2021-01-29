@@ -43,10 +43,10 @@ class Releaser:
 
         loop = asyncio.get_event_loop()
 
-        packageDeployFuture = loop.run_in_executor(None, self.__packageDeployer.deploy, packageMetadata)
+        packageReleaseFuture = loop.run_in_executor(None, self.__packageDeployer.release, packageMetadata)
         dbcDeployFuture = loop.run_in_executor(None, self.__currentAndReleaseDeployer.release, packageMetadata)
 
-        await packageDeployFuture
+        await packageReleaseFuture
         await dbcDeployFuture
 
         self.__logger.info('--')

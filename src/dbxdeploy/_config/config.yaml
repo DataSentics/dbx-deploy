@@ -18,6 +18,7 @@ parameters:
         currentPath: '%dbxdeploy.target.workspace.baseDir%/_current'
       package:
         baseDir: 'dbfs:/FileStore/jars'
+        deployPath: '%dbxdeploy.target.package.baseDir%/{packageName}/{currentBranch}/{packageFilename}'
         releasePath: '%dbxdeploy.target.package.baseDir%/{packageName}/{currentTime}_{randomString}/{packageFilename}'
         currentPath: '%dbxdeploy.target.package.baseDir%/{packageName}/_current/{packageFilename}'
       s3:
@@ -93,6 +94,7 @@ services:
 
   dbxdeploy.deploy.TargetPathsResolver:
     arguments:
+      - '%dbxdeploy.target.package.deployPath%'
       - '%dbxdeploy.target.package.releasePath%'
       - '%dbxdeploy.target.package.currentPath%'
       - '%dbxdeploy.target.workspace.releasePath%'

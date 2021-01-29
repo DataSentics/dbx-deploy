@@ -31,7 +31,7 @@ class NotebooksDeployer:
         self.__targetPathsResolver = targetPathsResolver
 
     def deploy(self, packageMetadata: PackageMetadata, notebooks: List[Notebook]):
-        packagePath = self.__targetPathsResolver.getPackageUploadPathForRelease(packageMetadata)
+        packagePath = self.__targetPathsResolver.getPackageUploadPathForDeploy(packageMetadata)
 
         self.__logger.info(f'All packages released, updating {self.__workspaceBaseDir}')
         self.__currentDirectoryUpdater.update(notebooks, self.__workspaceBaseDir, packagePath)
