@@ -9,9 +9,12 @@ class PackageInstaller:
         self.__packageBaseDir = packageBaseDir
 
     def getPackageInstallCommand(self, packageFilePath: str):
-        return 'dbutils.library.install(\'{}\')'.format(packageFilePath)
+        return f'%pip install {self.__modifyDbfs(packageFilePath)}'
 
     def isPackageInstallCommand(self, commandCode: str):
-        regExp = '^' + re.escape('dbutils.library.install(\'' + self.__packageBaseDir) + '.+-py3-none-any.whl\'\\)$'
+        regExp = '^' + re.escape(f'%pip install {self.__modifyDbfs(self.__packageBaseDir)}') + '.+-py3-none-any.whl$'
 
         return re.match(regExp, commandCode) is not None
+
+    def __modifyDbfs(self, path: str):
+        return '/dbfs/' + path.lstrip('dbfs:/')

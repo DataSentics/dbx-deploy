@@ -39,13 +39,13 @@ class CommandConverterTest(unittest.TestCase):
 
     def test_installMasterPackageWhl(self):
         self.__testCommand(
-            'dbutils.library.install(\'dbfs:/FileStore/jars/myproject/2020-03-21_08-56-14_fhpxgwblvi/myproject-1.0-py3-none-any.whl\')',
+            '%pip install /dbfs/FileStore/jars/myproject/2020-03-21_08-56-14_fhpxgwblvi/myproject-1.0-py3-none-any.whl',
             '# MAGIC %installMasterPackageWhl'
         )
 
     def test_installMasterPackageWhl_withTitle(self):
         self.__testCommand(
-            'dbutils.library.install(\'dbfs:/FileStore/jars/myproject/2020-03-21_08-56-14_fhpxgwblvi/myproject-1.0-py3-none-any.whl\')',
+            '%pip install /dbfs/FileStore/jars/myproject/2020-03-21_08-56-14_fhpxgwblvi/myproject-1.0-py3-none-any.whl',
             '# DBTITLE 0,My Command Title\n# MAGIC %installMasterPackageWhl',
             showCommandTitle=False,
             commandTitle='My Command Title',
